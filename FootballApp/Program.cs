@@ -32,6 +32,12 @@ namespace FootballApp
                         ShowAllTeams();
                         break;
                     case "5":
+                        CreatePlayer();
+                        break;
+                    case "6":
+                        ShowPlayersInTeam();
+                        break;
+                    case "A":
                         return;
 
                 }
@@ -39,6 +45,30 @@ namespace FootballApp
             }
             
 
+        }
+
+        private static void ShowPlayersInTeam()
+        {
+            Console.WriteLine("Välj först ett lag");
+            ShowAllTeams();
+            var teamName = Console.ReadLine();
+            var team = db.Teams.Single(aTeam => aTeam.Name == teamName);
+            foreach (var aPlayer in db.Players.Where(player => player.Teams.Id == team.Id))
+            {
+                Console.WriteLine(aPlayer.Name);
+            }
+        }
+
+        private static void CreatePlayer()
+        {
+            Console.WriteLine("Välj först ett lag");
+            ShowAllTeams();
+            var teamName = Console.ReadLine();
+            var team = db.Teams.Single(aTeam => aTeam.Name == teamName);
+            Console.WriteLine("Ange ett spelare");
+            var playerName = Console.ReadLine();
+            db.Players.Add(new Players { Name = playerName, Teams=team });
+            db.SaveChanges();
         }
 
         private static void ShowAllTeams()
@@ -79,7 +109,9 @@ namespace FootballApp
             Console.WriteLine("2. Lista alla arenor");
             Console.WriteLine("3. Skapa ett lag");
             Console.WriteLine("4. Lista alla lag");
-            Console.WriteLine("5. Avsluta");
+            Console.WriteLine("5. Skapa en spelare");
+            Console.WriteLine("6. Lista ett lag och dess spelare");
+            Console.WriteLine("A. Avsluta");
         }
     }
    
