@@ -61,6 +61,7 @@ namespace FootballApp
 
         private static void CreatePlayer()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Välj först ett lag");
             ShowAllTeams();
             var teamName = Console.ReadLine();
