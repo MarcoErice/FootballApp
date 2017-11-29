@@ -13,6 +13,7 @@ namespace FootballApp
         static FootballModel db = new FootballModel();
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             while (true)
             {
                 ShowMenu();
@@ -61,6 +62,7 @@ namespace FootballApp
 
         private static void CreatePlayer()
         {
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Välj först ett lag");
             ShowAllTeams();
@@ -70,38 +72,47 @@ namespace FootballApp
             var playerName = Console.ReadLine();
             db.Players.Add(new Players { Name = playerName, Teams=team });
             db.SaveChanges();
+            Console.WriteLine();
         }
 
         private static void ShowAllTeams()
         {
+            Console.WriteLine();
             foreach (var aTeam in db.Teams)
             {
                 Console.WriteLine(aTeam.Name);
             }
+            Console.WriteLine();
         }
 
         private static void CreateTeam()
         {
+            Console.WriteLine();
             Console.WriteLine("Ange ett lag namn");
             var teamName = Console.ReadLine();
             db.Teams.Add(new Teams { Name = teamName });
             db.SaveChanges();
+            Console.WriteLine();
         }
 
         private static void ShowAllArenas()
         {
+            Console.WriteLine();
             foreach (var aArena in db.Arenas)
             {
                 Console.WriteLine(aArena.Name);
             }
+            Console.WriteLine();
         }
 
         private static void CreateArena()
         {
+            Console.WriteLine();
             Console.WriteLine("Ange ett arena namn");
             var arenaName = Console.ReadLine();
             db.Arenas.Add(new Arenas { Name = arenaName });
             db.SaveChanges();
+            Console.WriteLine();
         }
 
         private static void ShowMenu()
